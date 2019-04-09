@@ -11,7 +11,7 @@ import input as http_api
 # io.jwt.decode takes one argument (the encoded token) and has three outputs:
 # the decoded header, payload and signature, in that order. Our policy only
 # cares about the payload, so we ignore the others.
-token = {"payload": payload} { io.jwt.decode(http_api.token, _, payload, _) }
+token = {"payload": payload} { io.jwt.decode(http_api.token, [_, payload, _]) }
 
 # Ensure that the token was issued to the user supplying it.
 user_owns_token { http_api.user = token.payload.azp }
